@@ -1,0 +1,24 @@
+				<datasource	jndi-name="java:jboss/datasources/MSSQLXADS-NON-XA" pool-name="MSSQLDS">
+					<connection-url>jdbc:sqlserver://localhost\SQLEXPRESS;databaseName=byte-code-indexes</connection-url>
+					<driver>sqlserver2008_non_xa</driver>
+					<security>
+						<user-name>sujan</user-name>
+						<password>123</password>
+					</security>
+					<pool>
+						<min-pool-size>5</min-pool-size>
+						<max-pool-size>50</max-pool-size>
+						<prefill>false</prefill>
+						<use-strict-min>false</use-strict-min>
+						<flush-strategy>FailingConnectionOnly</flush-strategy>
+					</pool>
+					<validation>
+						<valid-connection-checker
+							class-name="org.jboss.jca.adapters.jdbc.extensions.mssql.MSSQLValidConnectionChecker"></valid-connection-checker>
+					</validation>
+				</datasource> 
+                <drivers>
+                    <driver name="sqlserver2008_non_xa" module="com.microsoft.sqlserver">
+                        <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+                    </driver>
+                </drivers>

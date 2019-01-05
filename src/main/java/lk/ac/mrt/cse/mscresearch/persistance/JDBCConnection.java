@@ -63,11 +63,11 @@ public class JDBCConnection {
 		
 		org.hibernate.Transaction transaction = se.beginTransaction();
 		
-		JarDAO d = new JarDAO(se);
+//		JarDAO d = new JarDAO(se);
 //		d.save(ji);
 //		JarIndex ji2 = d.getByHashOf("104987                          ").get(0);
 //		System.out.println(ji2.getName());
-		d.createIfNotExists(ji);
+//		d.createIfNotExists(ji);
 //		System.out.println(d.createIfNotExists(j2).getName());
 		
 		ClassIndex ci = new ClassIndex();

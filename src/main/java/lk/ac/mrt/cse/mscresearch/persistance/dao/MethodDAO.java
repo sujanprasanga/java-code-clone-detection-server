@@ -3,16 +3,17 @@ package lk.ac.mrt.cse.mscresearch.persistance.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import lk.ac.mrt.cse.mscresearch.persistance.entities.MethodIndex;
 
 public class MethodDAO extends AbstractDAO<MethodIndex> {
 
-	private final MethodBodyDAO methodBodyDAO;
+	private MethodBodyDAO methodBodyDAO;
 	
-	public MethodDAO(Session session) {
-		super(session);
-		methodBodyDAO = new MethodBodyDAO(session);
+	@Autowired
+	public MethodDAO(MethodBodyDAO methodBodyDAO) {
+		this.methodBodyDAO = methodBodyDAO;
 	}
 
 	@Override
@@ -31,11 +32,11 @@ public class MethodDAO extends AbstractDAO<MethodIndex> {
 	}
 
 	@Override
-	public MethodIndex createIfNotExists(MethodIndex entity) {
-		List<MethodIndex> byHashOf = getByHashOf(getHashQuarryValue(entity));
+	public MethodIndex createIfNotExists(MethodIndex entity, Session session) {
+		List<MethodIndex> byHashOf = getByHashOf(getHashQuarryValue(entity), session);
 		if(byHashOf.isEmpty()){
-			methodBodyDAO.save(entity.getBodyEntity());
-			return save(entity);
+			methodBodyDAO.save(entity.getBodyEntity(), session);
+			return save(entity, session);
 		}
 		else{
 			return byHashOf.get(0);

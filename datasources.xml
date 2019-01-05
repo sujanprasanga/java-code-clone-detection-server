@@ -1,0 +1,34 @@
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+                <xa-datasource jndi-name="java:jboss/datasources/MSSQLXADS" pool-name="MSSQLXADS">
+                    <xa-datasource-property name="ServerName">
+                        localhost\SQLEXPRESS
+                    </xa-datasource-property>
+                    <xa-datasource-property name="DatabaseName">
+                        byte-code-indexes
+                    </xa-datasource-property>
+                    <xa-datasource-property name="SelectMethod">
+                        cursor
+                    </xa-datasource-property>
+                    <xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</xa-datasource-class>
+                    <driver>sqlserver</driver>
+                    <xa-pool>
+                        <is-same-rm-override>false</is-same-rm-override>
+                    </xa-pool>
+                    <security>
+                        <user-name>sujan</user-name>
+                        <password>123</password>
+                    </security>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mssql.MSSQLValidConnectionChecker"/>
+                        <background-validation>true</background-validation>
+                    </validation>
+                </xa-datasource>
+                <drivers>
+                    <driver name="sqlserver" module="com.microsoft.sqlserver">
+                        <xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</xa-datasource-class>
+                    </driver>
+                    <driver name="h2" module="com.h2database.h2">
+                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
+                </drivers>
+</datasources>

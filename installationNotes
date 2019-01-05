@@ -1,0 +1,3 @@
+to remove exampleds - datasource="java:jboss/datasources/ExampleDS" line also needs to be removed
+mssql jdbc driver in com\microsoft\sqlserver\main
+mklink java-code-clone-prevention-server.jar D:\development\msc-research\java-code-clone-detection-server\target\java-code-clone-prevention-server-1.0.0.jar

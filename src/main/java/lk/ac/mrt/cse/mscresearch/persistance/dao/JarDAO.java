@@ -1,14 +1,11 @@
 package lk.ac.mrt.cse.mscresearch.persistance.dao;
 
-import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
 import lk.ac.mrt.cse.mscresearch.persistance.entities.JarIndex;
 
+@Component
 public class JarDAO extends AbstractDAO<JarIndex> {
-
-	public JarDAO(Session session) {
-		super(session);
-	}
 
 	@Override
 	public Class<JarIndex> getEntityClass() {
