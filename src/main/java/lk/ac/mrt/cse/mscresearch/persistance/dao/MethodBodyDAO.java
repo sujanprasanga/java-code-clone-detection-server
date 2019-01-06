@@ -1,7 +1,10 @@
 package lk.ac.mrt.cse.mscresearch.persistance.dao;
 
+import org.springframework.stereotype.Component;
+
 import lk.ac.mrt.cse.mscresearch.persistance.entities.MethodBody;
 
+@Component
 public class MethodBodyDAO extends AbstractDAO<MethodBody> {
 
 	@Override

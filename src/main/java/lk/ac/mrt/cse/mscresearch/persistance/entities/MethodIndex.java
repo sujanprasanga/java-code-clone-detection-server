@@ -5,14 +5,12 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lk.ac.mrt.cse.mscresearch.util.MD5Hasher;
 
@@ -25,9 +23,8 @@ public class MethodIndex  implements EntityId {
 	@Column(name="primaryKey")
 	private int primaryKey;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "body")
-	private MethodBody body;
+	@Transient
+	private String body;
 	
 	@Column(name="bodyhash")
 	private String bodyhash;
@@ -53,18 +50,15 @@ public class MethodIndex  implements EntityId {
 	}
 
 	public String getBody() {
-		return body == null ? "" : body.getBody();
+		return body;
 	}
 
 	public void setBody(MethodBody body) {
-		this.body = body;
+		this.body = body.getBody();
 	}
 	
 	public void setBody(String body) {
-		if(this.body == null){
-			this.body = new MethodBody();
-		}
-		this.body.setBody(body);
+		this.body = body;
 	}
 
 	public String getBodyhash() {
@@ -108,7 +102,10 @@ public class MethodIndex  implements EntityId {
 	}
 
 	public MethodBody getBodyEntity() {
-		return this.body;
+		MethodBody methodBody = new MethodBody();
+		methodBody.setBody(body);
+		methodBody.setPrimaryKey(primaryKey);
+		return methodBody;
 	}
 
 	public void calculateUniqueHash() {

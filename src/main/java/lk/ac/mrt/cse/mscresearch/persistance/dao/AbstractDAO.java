@@ -1,8 +1,8 @@
 package lk.ac.mrt.cse.mscresearch.persistance.dao;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -32,8 +32,8 @@ public abstract class AbstractDAO<T extends EntityId> implements DAO<T> {
 	}
 	
 	@Override
-	public List<T> saveAll(List<T> entities, Session session) {
-		return entities.stream().map(e->save(e, session)).collect(Collectors.toList());
+	public List<T> saveAll(Collection<T> entities, Session session) {
+		return entities.stream().map(e->createIfNotExists(e, session)).collect(Collectors.toList());
 	}
 
 //	@Override
@@ -47,14 +47,14 @@ public abstract class AbstractDAO<T extends EntityId> implements DAO<T> {
 //	}
 
 	@Override
-	public List<T> getByHashOf(Set<String> hash, Session session) {
-		if(hash == null || hash.isEmpty()) {
+	public List<T> getByHashOf(Collection<String> hashes, Session session) {
+		if(hashes == null || hashes.isEmpty()) {
 			return Collections.emptyList();
 		}
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<T> criteria = builder.createQuery(getEntityClass());
 		Root<T> root = criteria.from(getEntityClass());
-		Predicate predicate = getPredicateForHashCompare(hash, builder, root);
+		Predicate predicate = getPredicateForHashCompare(hashes, builder, root);
 		criteria.select(root).where(predicate);
 		Query<T> quarry = session.createQuery(criteria);
 		return quarry.getResultList();
@@ -71,15 +71,15 @@ public abstract class AbstractDAO<T extends EntityId> implements DAO<T> {
 		return quarry.getResultList();
 	}
 
-	protected Predicate getPredicateForHashCompare(String hash, CriteriaBuilder builder, Root<T> root) {
+	protected Predicate getPredicateForHashCompare(String hashes, CriteriaBuilder builder, Root<T> root) {
 		Path<T> hashColumn = root.<T> get(getHashQuarryValueField());
-		Predicate predicate = builder.equal(hashColumn, hash);
+		Predicate predicate = builder.equal(hashColumn, hashes);
 		return predicate;
 	}
 	
-	protected Predicate getPredicateForHashCompare(Set<String> hash, CriteriaBuilder builder, Root<T> root) {
+	protected Predicate getPredicateForHashCompare(Collection<String> hashes, CriteriaBuilder builder, Root<T> root) {
 		Path<T> hashColumn = root.<T> get(getHashQuarryValueField());
-		Predicate predicate = hashColumn.in(hash);
+		Predicate predicate = hashColumn.in(hashes);
 		return predicate;
 	}
 

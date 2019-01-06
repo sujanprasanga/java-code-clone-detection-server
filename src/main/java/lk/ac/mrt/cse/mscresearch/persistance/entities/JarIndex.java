@@ -32,7 +32,7 @@ public class JarIndex  implements EntityId  {
 	@Column(name="artifact")
 	private String artifact;
 
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "jar_class_mapping", 
         joinColumns = { @JoinColumn(name = "jar_key") }, 

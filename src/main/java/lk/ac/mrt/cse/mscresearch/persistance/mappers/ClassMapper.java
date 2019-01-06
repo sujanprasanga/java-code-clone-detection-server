@@ -24,6 +24,7 @@ public class ClassMapper extends CollectionMapper<ClassIndex, ClassDTO> {
 		index.setClassHash(dto.getClassHash());
 		index.setJar(jarMapper.mapFromDTO(dto.getJars()));
 		index.setMethods(methodMapper.mapFromDTO(dto.getMethods()));
+		System.out.println(index.getClassName() + " " + index.getClassHash());
 		return index;
 	}
 	

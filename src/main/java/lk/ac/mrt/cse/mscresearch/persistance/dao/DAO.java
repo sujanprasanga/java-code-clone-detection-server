@@ -1,7 +1,7 @@
 package lk.ac.mrt.cse.mscresearch.persistance.dao;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Session;
 
@@ -11,10 +11,10 @@ public interface DAO<T extends EntityId> {
 
 	T save(T entity, Session session);
 	T getById(int id, Session session);
-	List<T> saveAll(List<T> entities, Session session);
+	List<T> saveAll(Collection<T> entities, Session session);
 //	T update(T entity);
 //	List<T> updateAll(List<T> entities);
-	List<T> getByHashOf(Set<String> hash, Session session);
+	List<T> getByHashOf(Collection<String> hash, Session session);
 	List<T> getByIds(List<Integer> ids, Session session);
 	T createIfNotExists(T entity, Session session);
 	Class<T> getEntityClass();

@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import lk.ac.mrt.cse.mscresearch.persistance.entities.MethodIndex;
 
+@Component
 public class MethodDAO extends AbstractDAO<MethodIndex> {
 
 	private MethodBodyDAO methodBodyDAO;
@@ -35,8 +37,9 @@ public class MethodDAO extends AbstractDAO<MethodIndex> {
 	public MethodIndex createIfNotExists(MethodIndex entity, Session session) {
 		List<MethodIndex> byHashOf = getByHashOf(getHashQuarryValue(entity), session);
 		if(byHashOf.isEmpty()){
-			methodBodyDAO.save(entity.getBodyEntity(), session);
-			return save(entity, session);
+			MethodIndex saved = save(entity, session);
+			methodBodyDAO.save(saved.getBodyEntity(), session);
+			return saved;
 		}
 		else{
 			return byHashOf.get(0);

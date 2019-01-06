@@ -32,7 +32,7 @@ public class ClassIndex implements EntityId {
 	@Column(name="class_md5_hash")
 	private String classHash;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "class_method_mapping", 
         joinColumns = { @JoinColumn(name = "class_key") }, 
