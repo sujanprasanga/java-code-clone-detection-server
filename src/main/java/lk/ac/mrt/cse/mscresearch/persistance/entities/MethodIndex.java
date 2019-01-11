@@ -38,6 +38,9 @@ public class MethodIndex  implements EntityId {
 	@Column(name="methodsignature")
 	private String signature;
 	
+	@Column(name="size")
+	private int size;
+	
 	@ManyToMany(mappedBy = "methods")
 	private Set<ClassIndex> classes = new HashSet<>();
 
@@ -49,6 +52,7 @@ public class MethodIndex  implements EntityId {
 		this.primaryKey = primaryKey;
 	}
 
+	@Transient
 	public String getBody() {
 		return body;
 	}
@@ -110,5 +114,13 @@ public class MethodIndex  implements EntityId {
 
 	public void calculateUniqueHash() {
 		setUniqueHash(MD5Hasher.md5(bodyhash + signature));
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 }

@@ -21,6 +21,8 @@ public class MethodDTO implements Serializable {
 	
 	private String signature;
 	
+	private int size;
+	
 	private Set<ClassDTO> classes = new HashSet<>();
 
 	public int getPrimaryKey() {
@@ -69,5 +71,13 @@ public class MethodDTO implements Serializable {
 
 	public void setSignature(String signature) {
 		this.signature = signature;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 }

@@ -24,6 +24,7 @@ public class MethodMapper extends CollectionMapper<MethodIndex, MethodDTO> {
 		index.setPrimaryKey(dto.getPrimaryKey());
 		index.setSignature(dto.getSignature());
 		index.calculateUniqueHash();
+		index.setSize(dto.getSize());
 		return index;
 	}
 	
@@ -35,6 +36,7 @@ public class MethodMapper extends CollectionMapper<MethodIndex, MethodDTO> {
 		dto.setPluginid(index.getPluginid());
 		dto.setPrimaryKey(index.getPrimaryKey());
 		dto.setSignature(index.getSignature());
+		dto.setSize(index.getSize());
 		return dto;
 	}
 
