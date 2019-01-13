@@ -20,8 +20,8 @@ public class OpCode {
 		private String targetClass;
 		private String targetMethod;
 		private String targetField;
-		private boolean optionallyExecuted;
-		private boolean looped;
+		private int optionalDepth;
+		private int loopDepth;
 		private boolean arrayOp;
 		private int[] targetInstructions;
 		private Category category;
@@ -61,17 +61,17 @@ public class OpCode {
 		public void setTargetField(String targetField) {
 			this.targetField = targetField;
 		}
-		public boolean isOptionallyExecuted() {
-			return optionallyExecuted;
+		public int getOptionalDepth() {
+			return optionalDepth;
 		}
-		public void setOptionallyExecuted(boolean optionallyExecuted) {
-			this.optionallyExecuted = optionallyExecuted;
+		public void setOptionalDepth(int d) {
+			this.optionalDepth = d;
 		}
-		public boolean isLooped() {
-			return looped;
+		public int getLoopDepth() {
+			return loopDepth;
 		}
-		public void setLooped(boolean looped) {
-			this.looped = looped;
+		public void setLoopDepth(int d) {
+			this.loopDepth = d;
 		}
 		public boolean isArrayOp() {
 			return arrayOp;

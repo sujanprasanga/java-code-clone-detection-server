@@ -1,3 +1,4 @@
+<ds>
 				<datasource	jndi-name="java:jboss/datasources/MSSQLXADS-NON-XA" pool-name="MSSQLDS">
 					<connection-url>jdbc:sqlserver://localhost\SQLEXPRESS;databaseName=byte-code-indexes</connection-url>
 					<driver>sqlserver2008_non_xa</driver>
@@ -22,3 +23,4 @@
                         <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
                     </driver>
                 </drivers>
+</ds>
