@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import lk.ac.mrt.cse.mscresearch.persistance.dao.ClassDAO;
 import lk.ac.mrt.cse.mscresearch.persistance.dao.JarDAO;
-import lk.ac.mrt.cse.mscresearch.persistance.dao.MethodDAO;
 import lk.ac.mrt.cse.mscresearch.persistance.entities.ClassIndex;
 import lk.ac.mrt.cse.mscresearch.persistance.entities.JarIndex;
 import lk.ac.mrt.cse.mscresearch.persistance.mappers.ClassMapper;
@@ -46,11 +45,6 @@ public class ByteCodePersistorService {
 
 	public void indexJar(JarDTO jar, Session session) {
 		jarDao.save(jarMapper.mapFromDTO(jar), session);
-	}
-
-	public Map<String, ClassDTO> getIndexedClasses(Set<ClassDTO> classes) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public boolean isJarIndexed(String hash, Session session) {
