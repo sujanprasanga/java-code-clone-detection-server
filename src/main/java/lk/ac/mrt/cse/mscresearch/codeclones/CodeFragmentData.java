@@ -1,6 +1,7 @@
 package lk.ac.mrt.cse.mscresearch.codeclones;
 
 import java.io.Serializable;
+import java.util.Set;
 
 public class CodeFragmentData implements Serializable{
 
@@ -8,7 +9,8 @@ public class CodeFragmentData implements Serializable{
 	
 	private String project;
 	private String clazz;
-	private String method;
+	private String methodHash;
+	private String methodSignature;
 	private int transformerType;
 	private String lineRange;
 	
@@ -24,11 +26,11 @@ public class CodeFragmentData implements Serializable{
 	public void setClazz(String clazz) {
 		this.clazz = clazz;
 	}
-	public String getMethod() {
-		return method;
+	public String getMethodHash() {
+		return methodHash;
 	}
-	public void setMethod(String method) {
-		this.method = method;
+	public void setMethodHash(String method) {
+		this.methodHash = method;
 	}
 	public int getTransformerType() {
 		return transformerType;
@@ -41,5 +43,11 @@ public class CodeFragmentData implements Serializable{
 	}
 	public void setLineRange(String lineRange) {
 		this.lineRange = lineRange;
+	}
+	public String getMethodSignature() {
+		return methodSignature;
+	}
+	public void setMethodSignature(String methodSignature) {
+		this.methodSignature = methodSignature;
 	}
 }

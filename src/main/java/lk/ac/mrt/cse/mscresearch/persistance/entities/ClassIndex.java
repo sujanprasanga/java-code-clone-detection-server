@@ -29,7 +29,7 @@ public class ClassIndex implements EntityId {
 	@Column(name="class_name")
 	private String className;
 	
-	@Column(name="class_md5_hash")
+	@Column(name="class_hash")
 	private String classHash;
 	
 	@ManyToMany(cascade = { CascadeType.MERGE })
@@ -79,4 +79,12 @@ public class ClassIndex implements EntityId {
 	public void setMethods(Set<MethodIndex> methods) {
 		this.methods = methods;
 	}
+
+	@Override
+	public String toString() {
+		return "ClassIndex [primaryKey=" + primaryKey + ", jars=" + jars + ", className=" + className + ", classHash="
+				+ classHash + ", methods=" + methods + "]";
+	}
+	
+	
 }

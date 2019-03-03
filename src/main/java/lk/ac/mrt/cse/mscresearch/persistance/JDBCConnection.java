@@ -51,13 +51,13 @@ public class JDBCConnection {
 //		
 //		MethodIndex mi = new MethodIndex();
 //		mi.setBody("body");
-//		mi.setBodyhash(new String(MessageDigest.getInstance("MD5").digest("body".getBytes())));
+//		mi.setBodyhash(new String(MessageDigest.getInstance("hashValue").digest("body".getBytes())));
 //		mi.setClassIndex(ci);
 //		mi.setPluginid(6);
 //		
 //		MethodIndex mi2 = new MethodIndex();
 //		mi2.setBody("body2");
-//		mi2.setBodyhash(new String(MessageDigest.getInstance("MD5").digest("body2".getBytes())));
+//		mi2.setBodyhash(new String(MessageDigest.getInstance("hashValue").digest("body2".getBytes())));
 //		mi2.setClassIndex(ci);
 //		mi2.setPluginid(6);
 		

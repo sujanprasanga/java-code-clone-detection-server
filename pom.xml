@@ -12,6 +12,12 @@
   </properties>
   
   <dependencies>
+	<dependency>
+		<groupId>com.google.guava</groupId>
+		<artifactId>guava</artifactId>
+		<version>19.0</version>
+	</dependency>
+  
   	<dependency>
   		<groupId>org.apache.commons</groupId>
 	    <artifactId>commons-exec</artifactId>
@@ -88,6 +94,7 @@
 								<include>lk/ac/mrt/cse/mscresearch/remoting/dto/*</include>
 								<include>lk/ac/mrt/cse/mscresearch/remoting/ByteCodePersistor.class</include>
 								<include>lk/ac/mrt/cse/mscresearch/remoting/CloneFinder.class</include>
+								<include>lk/ac/mrt/cse/mscresearch/util/Hashing.class</include>
 							</includes>
 						</configuration>
 					</execution>

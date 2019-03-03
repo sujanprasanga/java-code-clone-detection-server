@@ -1,5 +1,6 @@
 package lk.ac.mrt.cse.mscresearch.persistance.dao;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -55,6 +56,9 @@ public class MethodDAO extends AbstractDAO<MethodIndex> {
 	}
 	
 	public List<MethodIndex> findByBodyHash(Set<String> hashes, Session session){
+		if(hashes.isEmpty()) {
+			return Collections.emptyList();
+		}
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<MethodIndex> criteria = builder.createQuery(getEntityClass());
 		Root<MethodIndex> root = criteria.from(getEntityClass());

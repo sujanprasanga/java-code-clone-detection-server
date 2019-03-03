@@ -1,8 +1,12 @@
 package lk.ac.mrt.cse.mscresearch.remoting;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Remote;
@@ -55,12 +59,42 @@ public class ByteCodePersistorEjb implements ByteCodePersistor{
 
 	@Override
 	public Map<String, ClassDTO> getIndexedClasses(Collection<String> hashes) {
-		return service.getIndexedClasses(hashes, session);
+		Map<String, ClassDTO> map = new HashMap<>();
+		splitCollectionToParamLimit(hashes).forEach(h->map.putAll(service.getIndexedClasses(h, session)));
+		return map;
+	}
+
+	private List<List<String>> splitCollectionToParamLimit(Collection<String> hashes) {
+		List<List<String>> l = new ArrayList<>();
+		List<String> tmp = new ArrayList<>(hashes);
+		for(int i=0; i<hashes.size(); i+=2000) {
+			if(hashes.size() >= i+2000)
+			{
+				l.add(tmp.subList(i, i + 2000));
+			} else {
+				l.add(tmp.subList(i, hashes.size()));
+			}
+		}
+		return l;
 	}
 
 	@Override
 	public ClassDTO indexClass(ClassDTO classDTO) {
-		return service.indexClass(classDTO, session);
+//		try {
+			return service.indexClass(classDTO, session);
+//		} catch(Exception e) {
+//			return null;
+//		}
+	}
+
+	@Override
+	public List<ClassDTO> indexClasses(List<ClassDTO> classDTO) {
+		return classDTO.stream().map(this::indexClass).filter(e->e!=null).collect(Collectors.toList());
+	}
+
+	@Override
+	public Map<String, Boolean> isIndexed(Set<String> jarHashes) {
+		return service.isIndexed(jarHashes, session);
 	}
 
 }

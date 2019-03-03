@@ -62,4 +62,9 @@ public class ByteCodePersistorService {
 		return classMapper.mapToDTO(classDao.save(classMapper.mapFromDTO(classDTO), session));
 		
 	}
+
+	public Map<String, Boolean> isIndexed(Set<String> jarHashes, Session session) {
+		Set<String> existing = jarDao.getByHashOf(jarHashes, session).stream().map(JarIndex::getJarHash).collect(Collectors.toSet());
+		return jarHashes.stream().collect(Collectors.toMap(Function.identity(), s->existing.contains(s)));
+	}
 }

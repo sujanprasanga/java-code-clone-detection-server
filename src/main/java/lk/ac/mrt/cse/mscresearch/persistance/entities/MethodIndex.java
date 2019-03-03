@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import lk.ac.mrt.cse.mscresearch.util.MD5Hasher;
+import lk.ac.mrt.cse.mscresearch.util.Hashing;
 
 @Entity
 @Table(name="method_index")
@@ -113,7 +113,7 @@ public class MethodIndex  implements EntityId {
 	}
 
 	public void calculateUniqueHash() {
-		setUniqueHash(MD5Hasher.md5(bodyhash + signature));
+		setUniqueHash(Hashing.hash(bodyhash + signature));
 	}
 
 	public int getSize() {
@@ -122,5 +122,11 @@ public class MethodIndex  implements EntityId {
 
 	public void setSize(int size) {
 		this.size = size;
+	}
+
+	@Override
+	public String toString() {
+		return "MethodIndex [primaryKey=" + primaryKey + ", body=" + body + ", bodyhash=" + bodyhash + ", uniqueHash="
+				+ uniqueHash + ", pluginid=" + pluginid + ", signature=" + signature + ", size=" + size + "]";
 	}
 }

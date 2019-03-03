@@ -4,6 +4,7 @@
     <dependencies>
       <module name="org.springframework.spring" export="true" meta-inf="export"/>
       <module name="org.hibernate" export="true" meta-inf="export"/>
+      <module name="com.google.guava" export="true" meta-inf="export"/>
     </dependencies>
   </deployment>
 </jboss-deployment-structure>

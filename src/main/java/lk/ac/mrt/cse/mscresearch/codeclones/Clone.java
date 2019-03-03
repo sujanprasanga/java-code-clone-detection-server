@@ -16,12 +16,13 @@ public class Clone implements Serializable {
 	private String project;
 	private String clazz;
 	private String method;
+	private String methodHash;
 	private String lineRange;
 	private String targetArchive;
 	private String targetClass;
 	private String targetMethod;
 	private CloneType type;
-	private Set<LibMapping> libMapping;
+	private LibMapping libMapping;
 	
 	public String getProject() {
 		return project;
@@ -71,10 +72,16 @@ public class Clone implements Serializable {
 	public void setType(CloneType type) {
 		this.type = type;
 	}
-	public Set<LibMapping> getLibMapping() {
+	public LibMapping getLibMapping() {
 		return libMapping;
 	}
-	public void setLibMapping(Set<LibMapping> libMapping) {
+	public void setLibMapping(LibMapping libMapping) {
 		this.libMapping = libMapping;
+	}
+	public String getMethodHash() {
+		return methodHash;
+	}
+	public void setMethodHash(String methodHash) {
+		this.methodHash = methodHash;
 	}
 }

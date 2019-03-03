@@ -1,6 +1,8 @@
 package lk.ac.mrt.cse.mscresearch.remoting;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Remote;
@@ -24,8 +26,8 @@ public class CloneFinderEjb implements CloneFinder{
 	private Session session;
 	
 	@Override
-	public List<Clone> find(List<CodeFragmentData> codeFragment) {
-		return service.find(codeFragment, session);
+	public List<Clone> find(List<CodeFragmentData> codeFragment, Map<String, Set<String>> dependencyMapping) {
+		return service.find(codeFragment, dependencyMapping, session);
 	}
 
 	@PostConstruct

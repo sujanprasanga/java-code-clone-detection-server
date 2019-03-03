@@ -18,9 +18,10 @@ import org.hibernate.query.Query;
 import lk.ac.mrt.cse.mscresearch.persistance.entities.EntityId;
 
 public abstract class AbstractDAO<T extends EntityId> implements DAO<T> {
-
+	
 	@Override
 	public T save(T entity, Session session) {
+		System.out.println("saving " + entity.toString());
 		session.persist(entity);
 		session.flush();
 		return getById(entity.getPrimaryKey(), session);

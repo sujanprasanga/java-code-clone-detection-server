@@ -26,7 +26,7 @@ public class JarIndex  implements EntityId  {
 	@Column(name="jar_name")
 	private String name;
 	
-	@Column(name="jar_md5_hash")
+	@Column(name="jar_hash")
 	private String jarHash;
 	
 	@Column(name="artifact")
@@ -78,6 +78,12 @@ public class JarIndex  implements EntityId  {
 
 	public void setClasses(Set<ClassIndex> classes) {
 		this.classes = classes;
+	}
+
+	@Override
+	public String toString() {
+		return "JarIndex [primaryKey=" + primaryKey + ", name=" + name + ", jarHash=" + jarHash + ", artifact="
+				+ artifact + "]";
 	}
 	
 	
