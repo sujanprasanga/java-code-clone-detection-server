@@ -89,6 +89,11 @@ public class Clone implements Serializable {
 	public void setPluginCode(int pluginCode) {
 		this.pluginCode = pluginCode;
 	}
+	
+	public int getCloneUniqueHash() {
+		return hashCode();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -97,7 +102,7 @@ public class Clone implements Serializable {
 		result = prime * result + ((libMapping == null) ? 0 : libMapping.hashCode());
 		result = prime * result + ((lineRange == null) ? 0 : lineRange.hashCode());
 		result = prime * result + ((method == null) ? 0 : method.hashCode());
-		result = prime * result + ((methodHash == null) ? 0 : methodHash.hashCode());
+//		result = prime * result + ((methodHash == null) ? 0 : methodHash.hashCode());
 		result = prime * result + ((project == null) ? 0 : project.hashCode());
 		result = prime * result + ((targetArchive == null) ? 0 : targetArchive.hashCode());
 		result = prime * result + ((targetClass == null) ? 0 : targetClass.hashCode());
