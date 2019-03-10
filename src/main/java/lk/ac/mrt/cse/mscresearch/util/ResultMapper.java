@@ -29,6 +29,9 @@ public class ResultMapper {
 	}
 
 	public List<Clone> map() {
+		if(dependencyMapping.isEmpty()) {
+			return Collections.emptyList();
+		}
 		Map<String, List<MethodIndex>> resultMap = results.stream().collect(Collectors.groupingBy(MethodIndex::getBodyhash));
 		Map<String, List<CodeFragmentData>> f = codeFragments.stream().collect(Collectors.groupingBy(CodeFragmentData::getMethodHash));
 		return resultMap.keySet().stream().map(r->this.mapResult(f.get(r), resultMap.get(r))).flatMap(List::stream).collect(Collectors.toList());
@@ -60,6 +63,7 @@ public class ResultMapper {
 		c.setLineRange(f.getLineRange());
 		c.setLibMapping(libMapping);
 		c.setTargetMethod(methodIndex.getSignature());
+		c.setPluginCode(methodIndex.getPluginid());
 		return c;
 	}
 
@@ -75,7 +79,8 @@ public class ResultMapper {
 	}
 	
 	private Optional<LibMapping> toLibMapping(JarIndex j, ClassIndex c, String project) {
-		if(dependencyMapping.get(project).contains(j.getJarHash())) {
+		Set<String> projectDependencies = dependencyMapping.get(project);
+		if(projectDependencies!= null && projectDependencies.contains(j.getJarHash())) {
 			return Optional.of(new LibMapping(c.getClassName(), c.getClassHash(), j.getName(), j.getJarHash()));
 		} else {
 			return Optional.empty();
