@@ -64,6 +64,7 @@ public class ResultMapper {
 		c.setLibMapping(libMapping);
 		c.setTargetMethod(methodIndex.getSignature());
 		c.setPluginCode(methodIndex.getPluginid());
+		c.setIsSegment(f.isSegment());
 		return c;
 	}
 

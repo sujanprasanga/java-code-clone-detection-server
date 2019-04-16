@@ -12,7 +12,8 @@ public class CodeFragmentData implements Serializable{
 	private String methodHash;
 	private String methodSignature;
 	private int transformerType;
-	private String lineRange;
+	private boolean isSegment;
+	private int[] lineRange;
 	
 	public String getProject() {
 		return project;
@@ -38,10 +39,10 @@ public class CodeFragmentData implements Serializable{
 	public void setTransformerType(int transformerType) {
 		this.transformerType = transformerType;
 	}
-	public String getLineRange() {
+	public int[] getLineRange() {
 		return lineRange;
 	}
-	public void setLineRange(String lineRange) {
+	public void setLineRange(int[] lineRange) {
 		this.lineRange = lineRange;
 	}
 	public String getMethodSignature() {
@@ -49,5 +50,11 @@ public class CodeFragmentData implements Serializable{
 	}
 	public void setMethodSignature(String methodSignature) {
 		this.methodSignature = methodSignature;
+	}
+	public boolean isSegment() {
+		return isSegment;
+	}
+	public void setSegment(boolean isSegment) {
+		this.isSegment = isSegment;
 	}
 }

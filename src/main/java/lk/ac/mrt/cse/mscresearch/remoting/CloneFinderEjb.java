@@ -1,5 +1,6 @@
 package lk.ac.mrt.cse.mscresearch.remoting;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,9 +28,25 @@ public class CloneFinderEjb implements CloneFinder{
 	
 	@Override
 	public List<Clone> find(List<CodeFragmentData> codeFragment, Map<String, Set<String>> dependencyMapping) {
-		return service.find(codeFragment, dependencyMapping, session);
+		List<Clone> l = new ArrayList<>();
+		splitCollectionToParamLimit(codeFragment).forEach(f->l.addAll(service.find(f, dependencyMapping, session)));
+		return l;
 	}
 
+	private List<List<CodeFragmentData>> splitCollectionToParamLimit(List<CodeFragmentData> fragments) {
+		List<List<CodeFragmentData>> l = new ArrayList<>();
+		List<CodeFragmentData> tmp = new ArrayList<>(fragments);
+		for(int i=0; i<fragments.size(); i+=2000) {
+			if(fragments.size() >= i+2000)
+			{
+				l.add(tmp.subList(i, i + 2000));
+			} else {
+				l.add(tmp.subList(i, fragments.size()));
+			}
+		}
+		return l;
+	}
+	
 	@PostConstruct
 	public void startup()
 	{

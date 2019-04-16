@@ -14,8 +14,9 @@ public class Clone implements Serializable {
 	private String project;
 	private String clazz;
 	private String method;
+	private boolean isSegment;
 	private String methodHash;
-	private String lineRange;
+	private int[] lineRange;
 	private String targetArchive;
 	private String targetClass;
 	private String targetMethod;
@@ -41,10 +42,10 @@ public class Clone implements Serializable {
 	public void setMethod(String method) {
 		this.method = method;
 	}
-	public String getLineRange() {
+	public int[] getLineRange() {
 		return lineRange;
 	}
-	public void setLineRange(String lineRange) {
+	public void setLineRange(int[] lineRange) {
 		this.lineRange = lineRange;
 	}
 	public String getTargetArchive() {
@@ -88,6 +89,13 @@ public class Clone implements Serializable {
 	}
 	public void setPluginCode(int pluginCode) {
 		this.pluginCode = pluginCode;
+	}
+	
+	public boolean getIsSegment() {
+		return isSegment;
+	}
+	public void setIsSegment(boolean isSegment) {
+		this.isSegment = isSegment;
 	}
 	
 	public int getCloneUniqueHash() {
@@ -167,7 +175,7 @@ public class Clone implements Serializable {
 			return false;
 		if (type != other.type)
 			return false;
-		return true;
+		return this.isSegment == other.isSegment;
 	}
 	
 	}
